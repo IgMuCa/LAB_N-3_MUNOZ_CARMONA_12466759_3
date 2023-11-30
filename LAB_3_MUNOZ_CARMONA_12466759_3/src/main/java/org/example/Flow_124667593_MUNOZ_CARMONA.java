@@ -25,14 +25,23 @@ public class Flow_124667593_MUNOZ_CARMONA {
     public void setOptions(List<Option_124667593_MUNOZ_CARMONA> options) {
         this.options = options;
     }
+
+
+    // AGREGAR OPCION SIN REPETIR
     public void addOpcionToOptions(Option_124667593_MUNOZ_CARMONA opcion) {
         int largo_options = options.size();
         int contador=0;
         for(int i=0; i< largo_options; i++){
             if (options.get(i).getCode()==opcion.getCode()){
                 contador++;
-            } }
+            }
+        }
         if (contador>0){
             options.add(opcion);
-        } }
+        }
+    }
+
+
+
+    //-----------------------------------------------------------------------------------------------------------------
 }

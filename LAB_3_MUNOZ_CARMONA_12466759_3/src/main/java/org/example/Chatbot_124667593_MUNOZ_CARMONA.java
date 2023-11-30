@@ -10,6 +10,7 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
     private int startFlowID;
     private List<Flow_124667593_MUNOZ_CARMONA> flows;
 
+    //CONSTRUCTOR
     public Chatbot_124667593_MUNOZ_CARMONA(int chatbotID, String name, String msgWelcome, int startFlowID, List<Flow_124667593_MUNOZ_CARMONA> flows) {
         this.chatbotID = chatbotID;
         this.name = name;
@@ -17,6 +18,8 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
         this.startFlowID = startFlowID;
         this.flows = new ArrayList<>();
     }
+
+    // GETTER AND SETTER
     public int getChatbotID() {
         return chatbotID;
     }
@@ -43,6 +46,8 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
         this.startFlowID = startFlowID;
     }
     public void setFlows(List<Flow_124667593_MUNOZ_CARMONA> flows) {this.flows = flows;}
+
+    // AGREGAR FLUJO SIN REPETIR
     public void addFlujoToflows(Flow_124667593_MUNOZ_CARMONA flujo) {
         int largo_flows = flows.size();
         int contador=0;
