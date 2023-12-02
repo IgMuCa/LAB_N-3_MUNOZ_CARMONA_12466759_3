@@ -1,7 +1,10 @@
 package org.example;
 import java.util.Scanner;
 public class Main {
+
     public static void main(String[] args) {
+
+
 
 
        //METODO PARA SCANNEAR
@@ -15,8 +18,15 @@ public class Main {
         System.out.println("Usuario creado");
         System.out.print(userName);
         System.out.println(userCategoria);
+        saludar();
 
 
 
     }
+    //SE DECLARAN METODOS A USAR EN EL MAIN----------------------------------------------------------------------------
+    public static void saludar() {
+        System.out.println("¡Hola desde el método saludar!");
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------
 }
