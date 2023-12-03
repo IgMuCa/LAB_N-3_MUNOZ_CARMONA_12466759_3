@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Option_124667593_MUNOZ_CARMONA {
@@ -14,7 +15,7 @@ public class Option_124667593_MUNOZ_CARMONA {
         this.message = message;
         this.chatbotCodeLink = chatbotCodeLink;
         this.initialflowCodeLink = initialflowCodeLink;
-        this.keyword = keyword;
+        this.keyword = new ArrayList<>();
     }
 
     public int getCode() {return code;}
