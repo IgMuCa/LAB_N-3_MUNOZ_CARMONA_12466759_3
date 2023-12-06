@@ -12,7 +12,7 @@ public class System_124667593_MUNOZ_CARMONA {
     private List<Chatbot_124667593_MUNOZ_CARMONA> chatbots;
 
     //CONSTRUCTOR
-    public System_124667593_MUNOZ_CARMONA(String name, int initialChatbotCode, List<Usuario_124667593_MUNOZ_CARMONA> usuarios, Usuario_124667593_MUNOZ_CARMONA curretUser, List<Interaccion_124667593_MUNOZ_CARMONA> interacciones, List<Chatbot_124667593_MUNOZ_CARMONA> chatbots) {
+    public System_124667593_MUNOZ_CARMONA(String name, int initialChatbotCode, List<Usuario_124667593_MUNOZ_CARMONA> usuarios, String curretUser, List<Interaccion_124667593_MUNOZ_CARMONA> interacciones, List<Chatbot_124667593_MUNOZ_CARMONA> chatbots) {
         this.name = name;
         this.initialChatbotCode = initialChatbotCode;
         this.usuarios = new ArrayList<>();

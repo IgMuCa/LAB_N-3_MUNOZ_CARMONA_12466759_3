@@ -4,27 +4,36 @@ import java.util.List;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        System_124667593_MUNOZ_CARMONA sistemaOrigen;
 
-        Chatbot_124667593_MUNOZ_CARMONA chatbotOrigen;
+        List<Usuario_124667593_MUNOZ_CARMONA> usuariosSistema = new ArrayList<>();
+        List<Interaccion_124667593_MUNOZ_CARMONA> interaccionesSistema = new ArrayList<>();
+        List<Chatbot_124667593_MUNOZ_CARMONA>chatbotdSistema = new ArrayList<>();
 
-        
+        //Se crea un sistema de referencia
+        var sistema=new System_124667593_MUNOZ_CARMONA("name", 1, usuariosSistema, "currentUser", interaccionesSistema, chatbotdSistema );
+
         // EL DIALOGO COMIENZA POR ELEGIR QUE HACER
         // a.-Ingresar un usuario
         // b.-Ingresar un Chatbot
         // c.-Interactuar con el sistema
         // d.-Salir
-
         Scanner scanner = new Scanner (System.in);
         System.out.println("Que desaes hace?");
-        System.out.println("a.-Ingresar un usuario (Marca 1)");
-        System.out.println("b.-Ingresar un Chatbot (Marca 2)");
-        System.out.println("c.-Interactuar con el sistema (Marca 3)");
-        System.out.println("d.-Salir (Marca 4)");
-        int altEntrada= scanner.nextInt(); //
+        System.out.println("a.-Crear un sistema (Marca 1)");
+        System.out.println("b.-Ingresar un usuario (Marca 2)");
+        System.out.println("c.-Ingresar un Chatbot (Marca 3)");
+        System.out.println("d.-Interactuar con el sistema (Marca 4)");
+        System.out.println("e.-Salir (Marca 5)");
+        int altEntrada= scanner.nextInt();
+
+        if (altEntrada==1) {
+            Scanner scanner1 = new Scanner(System.in);
+            System.out.println("Ingrese nombre del sistema");
+            String nombreSistema = scanner1.nextLine();
+            sistema.setName(nombreSistema);
 
 
-
+        }
 
 
 
