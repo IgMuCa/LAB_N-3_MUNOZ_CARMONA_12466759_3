@@ -19,6 +19,9 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
         this.flows = new ArrayList<>();
     }
 
+    public Chatbot_124667593_MUNOZ_CARMONA() {
+    }
+
     // GETTER AND SETTER
     public int getChatbotID() {
         return chatbotID;

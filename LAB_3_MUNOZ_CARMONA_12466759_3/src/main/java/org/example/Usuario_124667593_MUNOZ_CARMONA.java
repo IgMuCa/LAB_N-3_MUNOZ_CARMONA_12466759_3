@@ -8,6 +8,9 @@ public class Usuario_124667593_MUNOZ_CARMONA {
         this.name = name;
         this.estado = estado;
     }
+
+    public Usuario_124667593_MUNOZ_CARMONA() {
+    }
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
     public int getEstado() {return estado;}
