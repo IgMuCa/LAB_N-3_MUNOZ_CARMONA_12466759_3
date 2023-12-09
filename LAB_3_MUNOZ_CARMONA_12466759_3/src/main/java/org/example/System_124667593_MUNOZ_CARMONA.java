@@ -90,9 +90,16 @@ public class System_124667593_MUNOZ_CARMONA {
 
 
     //METODO LOGIN
-    public void login(Usuario_124667593_MUNOZ_CARMONA usuario) {
-        if (usuarios.contains(usuario)) {
-            this.currentUser = usuario.getName();
+    public void login(String  usuario) {
+        int contador =0;
+        for (Usuario_124667593_MUNOZ_CARMONA user : usuarios) {
+            if (user.getName().equals(usuario)) {
+                contador++;
+                currentUser = user.getName();
+            }
+        }
+        if (contador==0) {
+            System.out.println("Usuario no registrado");
         }
     }
 
@@ -134,7 +141,9 @@ public class System_124667593_MUNOZ_CARMONA {
 
         //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
         for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
-            if (i.getNameUsuario()==currentUser){k++;}}
+            if (i.getNameUsuario()==currentUser){k++;
+            }
+        }
 
         //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
         if (k>0) {
@@ -163,21 +172,19 @@ public class System_124667593_MUNOZ_CARMONA {
                        }
                     }
                     Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
+                    interacciones.add(interaccion);
                     break;
                 }
             }
         }
          else {
-            for (int i = interacciones.size() - 1; i >= 0; i--) {
-                if (interacciones.get(i).getNameUsuario()==currentUser) {
-                    coordenadas.set(1, interacciones.get(i).getListaHistory().get(1));
-                    coordenadas.set(2, interacciones.get(i).getListaHistory().get(2));
-                    coordenadas.set(3, opcionElegida);
-                    coordenadas.set(4, interacciones.get(i).getListaHistory().get(1));
-                    coordenadas.set(4, interacciones.get(i).getListaHistory().get(2));
-                    break;
-                }
-            }
+             coordenadas.set(1, 1);
+             coordenadas.set(2, 2);
+             coordenadas.set(3, 0);
+             coordenadas.set(4, 1);
+             coordenadas.set(5, 2);
+            Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
+            interacciones.add(interaccion);
         }
     }
 
