@@ -13,6 +13,10 @@ public class Flow_124667593_MUNOZ_CARMONA {
         this.name_msg = name_msg;
         this.options = new ArrayList<>();
     }
+
+    public Flow_124667593_MUNOZ_CARMONA() {
+    }
+
     public int getId() {return id;}
     public String getName_msg() {return name_msg;}
     public List<Option_124667593_MUNOZ_CARMONA> getOptions() {return options;}
@@ -31,16 +35,31 @@ public class Flow_124667593_MUNOZ_CARMONA {
     public void addOpcionToOptions(Option_124667593_MUNOZ_CARMONA opcion) {
         int largo_options = options.size();
         int contador=0;
-        for(int i=0; i< largo_options; i++){
-            if (options.get(i).getCode()==opcion.getCode()){
-                contador++;
+
+        //agregar la primera opcion
+        if (largo_options==0) {options.add(opcion);}
+        else {
+            for (int i = 0; i < largo_options; i++) {
+                if (options.get(i).getCode() == opcion.getCode()) {
+                    contador++;
+                }
             }
-        }
-        if (contador>0){
-            options.add(opcion);
+            if (contador == 0) {
+                options.add(opcion);
+            }
         }
     }
 
+
+    //PARA IMPRIMIR LAS INSTANCIAS DE FLUJOS
+    @Override
+    public String toString() {
+        return "Flow_124667593_MUNOZ_CARMONA{" +
+                "id=" + id +
+                ", name_msg='" + name_msg + '\'' +
+                ", options=" + options +
+                '}';
+    }
 
 
     //-----------------------------------------------------------------------------------------------------------------

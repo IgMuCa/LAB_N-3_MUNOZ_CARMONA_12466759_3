@@ -18,6 +18,10 @@ public class Option_124667593_MUNOZ_CARMONA {
         this.keyword = new ArrayList<>();
     }
 
+    public Option_124667593_MUNOZ_CARMONA() {
+    }
+
+
     public int getCode() {return code;}
     public String getMessage() {return message;}
     public int getChatbotCodeLink() {return chatbotCodeLink;}
@@ -28,4 +32,20 @@ public class Option_124667593_MUNOZ_CARMONA {
     public void setChatbotCodeLink(int chatbotCodeLink) {this.chatbotCodeLink = chatbotCodeLink;}
     public void setInitialflowCodeLink(int initialflowCodeLink) {this.initialflowCodeLink = initialflowCodeLink;}
     public void setKeyword(List<String> keyword) {this.keyword = keyword;}
+
+
+    //PARA IMPRIMIR LAS INSTANCIAS DE OPCIONES
+    @Override
+    public String toString() {
+        return "Option_124667593_MUNOZ_CARMONA{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                ", chatbotCodeLink=" + chatbotCodeLink +
+                ", initialflowCodeLink=" + initialflowCodeLink +
+                ", keyword=" + keyword +
+                '}';
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------
 }

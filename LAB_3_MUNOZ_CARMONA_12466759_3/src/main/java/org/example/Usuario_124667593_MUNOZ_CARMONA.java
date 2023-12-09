@@ -11,8 +11,22 @@ public class Usuario_124667593_MUNOZ_CARMONA {
 
     public Usuario_124667593_MUNOZ_CARMONA() {
     }
+
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
     public int getEstado() {return estado;}
     public void setEstado(int estado) {this.estado = estado;}
+
+    @Override
+    public String toString() {
+        return "Usuario_124667593_MUNOZ_CARMONA{" +
+                "name='" + name + '\'' +
+                ", estado=" + estado +
+                '}';
+    }
+
+
+
+
+    //----------------------------------------------------------------------------------------------------------
 }

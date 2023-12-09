@@ -69,20 +69,21 @@ public class System_124667593_MUNOZ_CARMONA {
         this.chatbots = chatbots;
     }
 
-    //------------------------------------------------------------------------------------------------------------
-
-
+    //----------------------------------------------------------------------------------------------------------------------------
     //METODO PARA AGREGAR UN CHATBOT SIN REPETIR
     public void addChatbotToSistema(Chatbot_124667593_MUNOZ_CARMONA chatbot) {
         int largo_chatbots = chatbots.size();
         int contador=0;
+        //agregar el primer chatbot
+        if (largo_chatbots==0) {chatbots.add(chatbot);
+        }
+        else {
         for(int i=0; i< largo_chatbots; i++){
             if (chatbots.get(i).getChatbotID()==chatbot.getChatbotID()){
                 contador++;
             }
         }
-        if (contador>0){
-            chatbots.add(chatbot);
+        if (contador==0){chatbots.add(chatbot);}
         }
     }
 
@@ -108,13 +109,21 @@ public class System_124667593_MUNOZ_CARMONA {
     public void addUsuario(Usuario_124667593_MUNOZ_CARMONA usuario) {
         int largo_usuarios = usuarios.size();
         int contador = 0;
-        for (int i = 0; i < largo_usuarios; i++) {
-            if (usuarios.get(i).getName() == usuario.getName()) {
-                contador++;
-            }
+        //agregar el primer usuario
+        if (largo_usuarios==0) {usuarios.add(usuario);
         }
-        if (contador > 0) {usuarios.add(usuario);}
+        else {
+            //cuando ya hay usuarios en la lista
+            for (int i = 0; i < largo_usuarios; i++) {
+                if (usuarios.get(i).getName().equals(usuario.getName()))  {
+                    contador++;
+                }
+            }
+            //si no hay nadie con el mismo nombre, entonces lo agrega
+            if (contador == 0) {usuarios.add(usuario);}
+        }
     }
+
 
 
 
@@ -122,24 +131,31 @@ public class System_124667593_MUNOZ_CARMONA {
     public void interaccionChatbot(int opcionElegida) {
         int k=0;
         List<Integer>coordenadas=new ArrayList<>();
+
         //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
         for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
             if (i.getNameUsuario()==currentUser){k++;}}
-        //Si K > 0 implica que ya el usuario esta interactuando
+
+        //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
         if (k>0) {
             for (int i = interacciones.size() - 1; i >= 0; i--) {
-                if (interacciones.get(i).getNameUsuario()==currentUser) {
+                if (interacciones.get(i).getNameUsuario().equals(currentUser)) {
+                    //Se asignan al arreglo coordenadas (de enteros)
                     coordenadas.set (1,interacciones.get(i).getListaHistory().get(1));
                     coordenadas.set (2,interacciones.get(i).getListaHistory().get(2));
                     coordenadas.set (3,opcionElegida);
+
                     for (int j1=0; j1<chatbots.size(); j1++){
+                        //Encuentra el chatbot rquerido
                        if (chatbots.get(j1).getChatbotID() == coordenadas.get(1)){
                            for (int j2=0; j2<chatbots.get(j1).getFlows().size();j2++){
+                               //Encuentra el flow requrido
                               if(chatbots.get(j1).getFlows().get(j2).getId()==coordenadas.get(2)) {
                                   for (int j3=0; j3<chatbots.get(j1).getFlows().get(j2).getOptions().size();j3++){
+                                      //Encuentra la opcion elegida
                                         if (chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getCode() == opcionElegida){
                                             coordenadas.set(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getChatbotCodeLink());
-                                            coordenadas.set(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
+                                            coordenadas.set(5,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
                                         }
                                   }
                               }
@@ -163,6 +179,25 @@ public class System_124667593_MUNOZ_CARMONA {
                 }
             }
         }
+    }
+
+
+
+
+
+
+    //-----------------------------------------------------------------------------------------------------------
+    //PARA IMPRIMIR LAS INSTANCIAS DE SISTEMA
+    @Override
+    public String toString() {
+        return "System_124667593_MUNOZ_CARMONA{" +
+                "name='" + name + '\'' +
+                ", initialChatbotCode=" + initialChatbotCode +
+                ", usuarios=" + usuarios +
+                ", currentUser='" + currentUser + '\'' +
+                ", interacciones=" + interacciones +
+                ", chatbots=" + chatbots +
+                '}';
     }
 
 

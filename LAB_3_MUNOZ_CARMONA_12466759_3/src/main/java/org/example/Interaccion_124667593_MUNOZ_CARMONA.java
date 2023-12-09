@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Interaccion_124667593_MUNOZ_CARMONA {
@@ -10,7 +11,7 @@ public class Interaccion_124667593_MUNOZ_CARMONA {
 
     public Interaccion_124667593_MUNOZ_CARMONA(String nameUsuario, List<Integer> listaHistory) {
         this.nameUsuario = nameUsuario;
-        this.listaHistory = listaHistory;
+        this.listaHistory = new ArrayList<>();
         this.fecha= LocalDateTime.now();
     }
 

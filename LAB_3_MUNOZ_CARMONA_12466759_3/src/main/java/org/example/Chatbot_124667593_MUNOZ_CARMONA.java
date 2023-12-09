@@ -54,11 +54,36 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
     public void addFlujoToflows(Flow_124667593_MUNOZ_CARMONA flujo) {
         int largo_flows = flows.size();
         int contador=0;
-        for(int i=0; i< largo_flows; i++){
-            if (flows.get(i).getId()==flujo.getId()){
-                contador++;
-            } }
-        if (contador>0){
-            flows.add(flujo);
-        } }
+
+        //agregar el primer flujo
+        if (largo_flows==0){flows.add(flujo);}
+        else {
+            for (int i = 0; i < largo_flows; i++) {
+                if (flows.get(i).getId() == flujo.getId()) {
+                    contador++;
+                }
+            }
+            if (contador == 0) {
+                flows.add(flujo);
+            }
+        }
+    }
+
+
+
+    //-------------------------------------------------------------------------------------------------------------
+    //PARA IMPRIMIR LAS INSTANCIAS DE CHATBOTS
+    @Override
+    public String toString() {
+        return "Chatbot_124667593_MUNOZ_CARMONA{" +
+                "chatbotID=" + chatbotID +
+                ", name='" + name + '\'' +
+                ", msgWelcome='" + msgWelcome + '\'' +
+                ", startFlowID=" + startFlowID +
+                ", flows=" + flows +
+                '}';
+    }
+
+
+    //-------------------------------------------------------------------------------------------------------------
 }
