@@ -102,8 +102,8 @@ public class Main {
             //Interactua con el sistema
             if (altEntrada1 == 2) {
                 sistema.interaccionChatbot(0);
-                sistema.interaccionChatbot(2);
-                sistema.interaccionChatbot(2);
+                sistema.interaccionChatbot(1);
+                sistema.interaccionChatbot(1);
                 //sistema.sintesisUser(sistema.getCurrentUser());
 
 
