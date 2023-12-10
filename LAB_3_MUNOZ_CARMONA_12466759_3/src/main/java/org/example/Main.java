@@ -9,13 +9,13 @@ public class Main {
         List<Usuario_124667593_MUNOZ_CARMONA> usuariosSistema = new ArrayList<>();
         List<Interaccion_124667593_MUNOZ_CARMONA> interaccionesSistema = new ArrayList<>();
         List<Chatbot_124667593_MUNOZ_CARMONA>chatbotdSistema = new ArrayList<>();
-        int code_dialogando =1;
 
+        int code_dialogando =1;
         //Se crea un Sistema
         var sistema=new System_124667593_MUNOZ_CARMONA("Sistema_Paradigma", 0, usuariosSistema, "none", interaccionesSistema, chatbotdSistema);
         Scanner scanner = new Scanner(System.in);
 
-        //DIALOGO (1)
+        //DIALOGO (1)****************************************************************************************************************************************************************
         while (code_dialogando==1) {
             // EL DIALOGO INICIAL
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
@@ -69,9 +69,8 @@ public class Main {
         } //Cierre del While asociado al primer dialogo.
 
 
-
         //Se ingresa al sistema
-        //DIALOGO (2)
+        //DIALOGO (2)***************************************************************************************************************************************************
         while (code_dialogando==2) {
             //DIALOGO EN SISTEMA
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
@@ -82,7 +81,7 @@ public class Main {
 
             //OPCION 1
             //Ingresar un chatbot
-            if (altEntrada1 == 3) {
+            if (altEntrada1 == 1) {
                 int var_Dummie = 1;
                 //Analizar si el usuario tiene privilegios de administrador
                  if(rolAdmistrador(sistema.getUsuarios(), sistema.getCurrentUser())==0){
@@ -100,10 +99,14 @@ public class Main {
             }
 
             //OPCION 2
-            //Salir del dialogo
+            //Interactua con el sistema
             if (altEntrada1 == 2) {
+                sistema.interaccionChatbot(0);
+                sistema.interaccionChatbot(2);
+                sistema.interaccionChatbot(2);
+                //sistema.sintesisUser(sistema.getCurrentUser());
 
-                //Desarrollar interaccion
+
 
             }
 

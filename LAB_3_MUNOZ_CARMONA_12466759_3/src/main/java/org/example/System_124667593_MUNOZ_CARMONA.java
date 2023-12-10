@@ -133,7 +133,7 @@ public class System_124667593_MUNOZ_CARMONA {
 
 
 
-
+ //****************************************************************************************************************************************
     // METODO PARA INTERACTUAR CON UN CHATBOT
     public void interaccionChatbot(int opcionElegida) {
         int k=0;
@@ -141,35 +141,34 @@ public class System_124667593_MUNOZ_CARMONA {
 
         //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
         for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
-            if (i.getNameUsuario()==currentUser){k++;
+            if (i.getNameUsuario().equals(currentUser)){k++;
             }
         }
-
         //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
         if (k>0) {
             for (int i = interacciones.size() - 1; i >= 0; i--) {
                 if (interacciones.get(i).getNameUsuario().equals(currentUser)) {
                     //Se asignan al arreglo coordenadas (de enteros)
-                    coordenadas.set (1,interacciones.get(i).getListaHistory().get(1));
-                    coordenadas.set (2,interacciones.get(i).getListaHistory().get(2));
-                    coordenadas.set (3,opcionElegida);
+                    coordenadas.add (0,interacciones.get(i).getListaHistory().get(1));
+                    coordenadas.add (1,interacciones.get(i).getListaHistory().get(2));
+                    coordenadas.add (2,opcionElegida);
 
                     for (int j1=0; j1<chatbots.size(); j1++){
-                        //Encuentra el chatbot rquerido
-                       if (chatbots.get(j1).getChatbotID() == coordenadas.get(1)){
-                           for (int j2=0; j2<chatbots.get(j1).getFlows().size();j2++){
-                               //Encuentra el flow requrido
-                              if(chatbots.get(j1).getFlows().get(j2).getId()==coordenadas.get(2)) {
-                                  for (int j3=0; j3<chatbots.get(j1).getFlows().get(j2).getOptions().size();j3++){
-                                      //Encuentra la opcion elegida
+                        //Encuentra el chatbot requerido
+                        if (chatbots.get(j1).getChatbotID() == coordenadas.get(1)){
+                            for (int j2=0; j2<chatbots.get(j1).getFlows().size();j2++){
+                                //Encuentra el flow requrido
+                                if(chatbots.get(j1).getFlows().get(j2).getId()==coordenadas.get(2)) {
+                                    for (int j3=0; j3<chatbots.get(j1).getFlows().get(j2).getOptions().size();j3++){
+                                        //Encuentra la opcion elegida
                                         if (chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getCode() == opcionElegida){
-                                            coordenadas.set(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getChatbotCodeLink());
-                                            coordenadas.set(5,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
+                                            coordenadas.add(3,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getChatbotCodeLink());
+                                            coordenadas.add(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
                                         }
-                                  }
-                              }
-                           }
-                       }
+                                    }
+                                }
+                            }
+                        }
                     }
                     Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
                     interacciones.add(interaccion);
@@ -177,14 +176,61 @@ public class System_124667593_MUNOZ_CARMONA {
                 }
             }
         }
-         else {
-             coordenadas.set(1, 1);
-             coordenadas.set(2, 2);
-             coordenadas.set(3, 0);
-             coordenadas.set(4, 1);
-             coordenadas.set(5, 2);
+        else {
+            coordenadas.add(0, 0);
+            coordenadas.add(1, 1);
+            coordenadas.add(2, 0);
+            coordenadas.add(3, 0);
+            coordenadas.add(4, 1);
             Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
             interacciones.add(interaccion);
+        }
+    }
+
+
+
+
+    //**********************************************************************************************************************************
+    // METODO PARA GENERAR UNA SINTESIS
+    public void sintesisUser(String user){
+         int k=0;
+        //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al User
+        for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
+            if (i.getNameUsuario()==user){k++;
+            }
+        }
+        //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
+        if (k>0) {
+            for (int i = interacciones.size() - 1; i >= 0; i--) {
+                //Se encuentra interaccion de interes
+                if (interacciones.get(i).getNameUsuario().equals(user)) {
+                    //Se busca el chatbot de interaccion
+                     for (Chatbot_124667593_MUNOZ_CARMONA c:chatbots){
+                         if (interacciones.get(i).getListaHistory().get(1)==c.getChatbotID()){
+                             //Se busca el chatbot de interaccion
+                             for (Flow_124667593_MUNOZ_CARMONA f:c.getFlows()) {
+                                 if (interacciones.get(i).getListaHistory().get(2)==f.getId()){
+                                     //Se imprimen las opciones
+                                     //Se imprime la primera linea
+                                     System.out.print(interacciones.get(i).getFecha());
+                                     System.out.print("-" + interacciones.get(i).getNameUsuario());
+                                     if (interacciones.get(i).getListaHistory().get(3)==0) {
+                                         System.out.print(": Hola");
+                                     }
+                                     else{
+                                         System.out.print(":" + interacciones.get(i).getListaHistory().get(3));
+                                     }
+                                     System.out.println();
+                                     //se imprimen las opciones
+                                     for(Option_124667593_MUNOZ_CARMONA o:f.getOptions()){
+                                         System.out.println(o.getMessage());
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                }
+            }
         }
     }
 

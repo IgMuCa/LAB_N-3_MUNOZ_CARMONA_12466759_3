@@ -11,7 +11,7 @@ public class Interaccion_124667593_MUNOZ_CARMONA {
 
     public Interaccion_124667593_MUNOZ_CARMONA(String nameUsuario, List<Integer> listaHistory) {
         this.nameUsuario = nameUsuario;
-        this.listaHistory = new ArrayList<>();
+        this.listaHistory = listaHistory;
         this.fecha= LocalDateTime.now();
     }
 
@@ -20,4 +20,16 @@ public class Interaccion_124667593_MUNOZ_CARMONA {
     public LocalDateTime getFecha() {return fecha;}
     public void setNameUsuario(String nameUsuario) {this.nameUsuario = nameUsuario;}
     public void setListaHistory(List<Integer> listaHistory) {this.listaHistory = listaHistory;}
+
+
+
+  //METODO PARA IMPRIMIR UNA INTERACCION
+    @Override
+    public String toString() {
+        return "Interaccion_124667593_MUNOZ_CARMONA{" +
+                "nameUsuario='" + nameUsuario + '\'' +
+                ", listaHistory=" + listaHistory +
+                ", fecha=" + fecha +
+                '}';
+    }
 }
