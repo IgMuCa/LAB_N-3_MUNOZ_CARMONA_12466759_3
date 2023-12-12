@@ -236,17 +236,17 @@ public class System_124667593_MUNOZ_CARMONA {
 // SIMULADOR
 //Metodo que genera una interacion simulada con los chatbots
     public void SimulacionChatbot(String user) {
-        int k=0;
+        int k=0; //Iniciador para contar si el user ya ha interactuado con el sistemas (Sea este user un automata o no)
         List<Integer>coordenadas=new ArrayList<>();
         //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
         for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
-            if (i.getNameUsuario().equals(currentUser)){k++;
+            if (i.getNameUsuario().equals(user)){k++;
             }
         }
         //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
         if (k>0) {
             for (int i = interacciones.size() - 1; i >= 0; i--) {
-                if (interacciones.get(i).getNameUsuario().equals(currentUser)) {
+                if (interacciones.get(i).getNameUsuario().equals(user)) {
                     coordenadas.add (0,interacciones.get(i).getListaHistory().get(3));
                     coordenadas.add (1,interacciones.get(i).getListaHistory().get(4));
 
@@ -290,13 +290,15 @@ public class System_124667593_MUNOZ_CARMONA {
         }
     }
 
+// Simula y reporta un chatbot simulado
+    public void simuladorChatbots (String user, int numIteraciones) {
 
-    public void simuladorChatbots (String user, int numiteraciones) {
-        //for para replicar la simulacion de acuerdo al numero de iteraciones
-
-        //mostrar sintesis.
-        //Incora en el main como una opcion más
-
+        //Ciclo for para replicar la simulacion de acuerdo al numero de iteraciones
+        for (int i=0; i<numIteraciones; i++) {
+            SimulacionChatbot(user);
+        }
+        //Mostrar sintesis.
+        sintesisUser(user);
     }
 
 

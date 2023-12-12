@@ -76,7 +76,8 @@ public class Main {
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
             System.out.println("a.-Ingresar un Chatbot (Marca 1)");
             System.out.println("b.-Interactuar con el sistema (Marca 2)");
-            System.out.println("c.-Salir (Marca 3)");
+            System.out.println("c.- Simular interacción con un user_bot (Marca 3)");
+            System.out.println("d.-Salir (Marca 4)");
             int altEntrada1 = scanner.nextInt();  //altEntrada corresponde a la alternativa elegida en este primer dialogo
 
             //OPCION 1
@@ -111,26 +112,37 @@ public class Main {
                 while (interaccion==1) {
                     System.out.println("Ingrese opción elegida");
                     int opcion = scanner.nextInt();
+                    scanner.nextLine();
                     sistema.interaccionChatbot(opcion);
                     sistema.sintesisUser(sistema.getCurrentUser());
 
                     System.out.println("Deseas seguir interactuando con los chabots (si = 1) (No = 0)");
                     int seguirInteractuando = scanner.nextInt();
+                    scanner.nextLine();
 
                     if(seguirInteractuando == 0){
                         interaccion=0;
                     }
                 }
-
             }
 
             //OPCION 3
-            //Salir del dialogo
-            if (altEntrada1 == 3) {code_dialogando =0;
+            if (altEntrada1==3) {
+                System.out.println("Ingrese el número de iteraciones as simular");
+                int numIteraciones= scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Ingrese el usuario simulado (formato: user_XXXXX) : " );
+                String usuarioSimulado= scanner.nextLine();
+                sistema.simuladorChatbots(usuarioSimulado, numIteraciones);
             }
 
-        } //Cierre de While asociado al ingreso al sistema
+            //OPCION 4
+            //Salir del dialogo
+            if (altEntrada1 == 4) {code_dialogando =0;
+            }
 
+
+        } //Cierre de While asociado al ingreso al sistema
 
 //--------------------------------------------------------------------------------------------------------------------------------------
        // Imprimir como se va llenando el sistema
