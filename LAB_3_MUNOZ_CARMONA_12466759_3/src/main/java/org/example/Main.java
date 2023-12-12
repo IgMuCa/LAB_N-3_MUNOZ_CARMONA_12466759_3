@@ -101,12 +101,26 @@ public class Main {
             //OPCION 2
             //Interactua con el sistema
             if (altEntrada1 == 2) {
+                int interaccion=1;
+
+                //Situacion inicial
                 sistema.interaccionChatbot(0);
-                sistema.interaccionChatbot(1);
-                sistema.interaccionChatbot(1);
-                //sistema.sintesisUser(sistema.getCurrentUser());
+                sistema.sintesisUser(sistema.getCurrentUser());
 
+                //ciclo for para interactuar
+                while (interaccion==1) {
+                    System.out.println("Ingrese opción elegida");
+                    int opcion = scanner.nextInt();
+                    sistema.interaccionChatbot(opcion);
+                    sistema.sintesisUser(sistema.getCurrentUser());
 
+                    System.out.println("Deseas seguir interactuando con los chabots (si = 1) (No = 0)");
+                    int seguirInteractuando = scanner.nextInt();
+
+                    if(seguirInteractuando == 0){
+                        interaccion=0;
+                    }
+                }
 
             }
 
@@ -116,7 +130,6 @@ public class Main {
             }
 
         } //Cierre de While asociado al ingreso al sistema
-
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------
