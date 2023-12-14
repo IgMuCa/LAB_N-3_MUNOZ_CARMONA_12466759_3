@@ -2,6 +2,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,22 +11,25 @@ public class Main {
         List<Interaccion_124667593_MUNOZ_CARMONA> interaccionesSistema = new ArrayList<>();
         List<Chatbot_124667593_MUNOZ_CARMONA>chatbotdSistema = new ArrayList<>();
 
-        int code_dialogando =1;
         //Se crea un Sistema
         var sistema=new System_124667593_MUNOZ_CARMONA("Sistema_Paradigma", 0, usuariosSistema, "none", interaccionesSistema, chatbotdSistema);
         Scanner scanner = new Scanner(System.in);
 
+
+        int code_dialogando =1; //Se ingresa a los dialogos
         //DIALOGO (1)****************************************************************************************************************************************************************
+
         while (code_dialogando==1) {
             // EL DIALOGO INICIAL
+
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
             System.out.println("Que deseas hacer?");
             System.out.println("a.-Ingresar al sistema - Login  (Marca 1)");
             System.out.println("b.-Salir del sistema - Logout  (Marca 2)");
             System.out.println("c.-Registar usuario  (Marca 3)");
             System.out.println("d.-Salir  (Marca 4)");
-            int altEntrada = scanner.nextInt();
-            scanner.nextLine();
+            int altEntrada = ingresarEntero(1,4);   //Se asegura el ingreso de un entrero entre 1 y 4.
+
 
             //OPCION 1
             //Ingresar al sistema
@@ -36,7 +40,7 @@ public class Main {
                     System.out.println("Hay un usuario operando en el sistema");
                 }
                 sistema.login(user);
-                //Despues de aplicar login, y si el usuario está ok, entonces el curretUser será igual al user
+                //Despues de aplicar LOGIN, y si el usuario está ok, entonces el curretUser será igual al user
                 if (sistema.getCurrentUser()!= null && sistema.getCurrentUser().equals(user)){
                   code_dialogando=2;}
             }
@@ -52,12 +56,16 @@ public class Main {
             if (altEntrada == 3) {
                 int var_Dummie = 1;
                 //Se define ciclo para generar la posibilidad de ingresasr mas de un usuario
-                while (var_Dummie == 1) {
-                    sistema.addUsuario(make_user());
-                    Scanner scanner2 = new Scanner(System.in);
-                    System.out.println("Deseas ingresar otro usuario? (Si -Marca 1) (No -Marca 2)  ");
-                    int otroUsuario = scanner2.nextInt();
-                    var_Dummie = otroUsuario;
+                while (var_Dummie != 2) {
+                    if(var_Dummie==1){
+                        sistema.addUsuario(make_user());
+                        System.out.println("Deseas ingresar otro usuario? (Si -Marca 1) (No -Marca 2)  ");
+                        int otroUsuario = ingresarEntero(1,2);
+                        var_Dummie = otroUsuario;}
+                    else{
+                        System.out.println("Deseas ingresar otro usuario? (Si -Marca 1) (No -Marca 2)  ");
+                        int otroUsuario = ingresarEntero(1,2);
+                        var_Dummie = otroUsuario;}
                 }
             }
 
@@ -78,7 +86,7 @@ public class Main {
             System.out.println("b.-Interactuar con el sistema (Marca 2)");
             System.out.println("c.- Simular interacción con un user_bot (Marca 3)");
             System.out.println("d.-Salir (Marca 4)");
-            int altEntrada1 = scanner.nextInt();  //altEntrada corresponde a la alternativa elegida en este primer dialogo
+            int altEntrada1 = ingresarEntero(1,4);  //altEntrada corresponde a la alternativa elegida en este primer dialogo
 
             //OPCION 1
             //Ingresar un chatbot
@@ -92,9 +100,9 @@ public class Main {
                 //Se define ciclo para generar la posibilidad de ingresar mas de un chatbot
                 while (var_Dummie == 1) {
                     sistema.addChatbotToSistema(make_chatbot());
-                    Scanner scanner2 = new Scanner(System.in);
                     System.out.println("Deseas ingresar otro chatbot? (Si -Marca 1) (No -Marca 2)  ");
-                    int otroChatbot = scanner2.nextInt();
+                    int otroChatbot = scanner.nextInt();
+                    scanner.nextLine();
                     var_Dummie = otroChatbot;
                 }
             }
@@ -128,7 +136,7 @@ public class Main {
 
             //OPCION 3
             if (altEntrada1==3) {
-                System.out.println("Ingrese el número de iteraciones as simular");
+                System.out.println("Ingrese el número de iteraciones a simular");
                 int numIteraciones= scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("Ingrese el usuario simulado (formato: user_XXXXX) : " );
@@ -193,6 +201,7 @@ public class Main {
 
         System.out.println("Ingrese startFlowID");
         int startFlowIDCb= scanner.nextInt();
+        scanner.nextLine();
         chatbot.setStartFlowID(startFlowIDCb);
 
         //Abajo: while para llenar la flujos
@@ -219,9 +228,9 @@ public class Main {
         Scanner scanner = new Scanner (System.in);
         System.out.println("Ingrese Id del Flow");
         int id_flow= scanner.nextInt();
+        scanner.nextLine();
         flujo.setId(id_flow);
 
-        scanner.nextLine();
         System.out.println("Ingrese mensaje");
         String msg_flow= scanner.nextLine();
         flujo.setName_msg(msg_flow);
@@ -285,7 +294,7 @@ public class Main {
     }
 
     //-------------------------------------------------------------------------------------------------------------------
-    //Metodo para determinar si una tupla pertenece
+    //Metodo para determinar si una tupla pertenece a lista de usuarios
     public static int rolAdmistrador (List<Usuario_124667593_MUNOZ_CARMONA>usuarios, String usuario){
         int esAdministrador=0;
         for (Usuario_124667593_MUNOZ_CARMONA user:usuarios) {
@@ -299,6 +308,30 @@ public class Main {
     }
 
 
-    //Cierre
-    //-----------------------------------------------------------------------------------------------------------------
+
+    //INGRESAR ENTERO PROTEGIENDO EL TIPO DE DATO--------------------------------------------------------------------------------------------------------
+    public static int ingresarEntero(int min, int max){
+        Scanner scanner = new Scanner(System.in);
+        int entrada=0;
+        boolean entradaValida = false;
+            do {
+                //System.out.print("Ingrese un número entero: ");
+                if (scanner.hasNextInt()) {
+                    entrada = scanner.nextInt();
+                    entradaValida = true;
+                } else {
+                    System.out.println("Entrada no válida o fuera de rango");
+                    scanner.next(); // Limpiar el buffer de entrada
+                }
+            }while (!entradaValida && (entrada >= min && entrada <= max));
+            return entrada;
+    }
+
+
+
+
+
+
+//******************************************************************************************************************************************************************
+// Cierre
 } //fin del mail

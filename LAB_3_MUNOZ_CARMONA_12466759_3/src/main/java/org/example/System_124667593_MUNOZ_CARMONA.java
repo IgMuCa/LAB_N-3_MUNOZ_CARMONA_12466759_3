@@ -138,6 +138,8 @@ public class System_124667593_MUNOZ_CARMONA {
  // METODO PARA INTERACTUAR CON UN CHATBOT
  public void interaccionChatbot(int opcionElegida) {
      int k=0;
+     String siOpcionEsString="";
+
      List<Integer>coordenadas=new ArrayList<>();
      //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
      for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
@@ -168,7 +170,7 @@ public class System_124667593_MUNOZ_CARMONA {
                          }
                      }
                  }
-                 Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
+                 Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,siOpcionEsString, coordenadas);
                  interacciones.add(interaccion);
                  break;
              }
@@ -180,11 +182,10 @@ public class System_124667593_MUNOZ_CARMONA {
          coordenadas.add(2, 0);
          coordenadas.add(3, 0);
          coordenadas.add(4, 1);
-         Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,coordenadas);
+         Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,siOpcionEsString, coordenadas);
          interacciones.add(interaccion);
      }
  }
-
 
 
 
@@ -216,7 +217,9 @@ public class System_124667593_MUNOZ_CARMONA {
                                          System.out.print(": Hola");
                                      }
                                      else{
-                                         System.out.print(":" + interacciones.get(i).getListaHistory().get(3));
+                                         if (interacciones.get(i).getSiString().equals("")){
+                                             System.out.print(":" + interacciones.get(i).getSiString());}
+                                         else{System.out.print(":" + interacciones.get(i).getListaHistory().get(3));}
                                      }
                                      System.out.println();
                                      //se imprimen las opciones
@@ -237,6 +240,8 @@ public class System_124667593_MUNOZ_CARMONA {
 //Metodo que genera una interacion simulada con los chatbots
     public void SimulacionChatbot(String user) {
         int k=0; //Iniciador para contar si el user ya ha interactuado con el sistemas (Sea este user un automata o no)
+        String siOpcionEsString="";
+
         List<Integer>coordenadas=new ArrayList<>();
         //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
         for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
@@ -273,7 +278,7 @@ public class System_124667593_MUNOZ_CARMONA {
                             }
                         }
                     }
-                    Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(user,coordenadas);
+                    Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(user,siOpcionEsString, coordenadas);
                     interacciones.add(interaccion);
                     break;
                 }
@@ -285,7 +290,7 @@ public class System_124667593_MUNOZ_CARMONA {
             coordenadas.add(2, 0);
             coordenadas.add(3, 0);
             coordenadas.add(4, 1);
-            Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(user,coordenadas);
+            Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(user,siOpcionEsString, coordenadas);
             interacciones.add(interaccion);
         }
     }
