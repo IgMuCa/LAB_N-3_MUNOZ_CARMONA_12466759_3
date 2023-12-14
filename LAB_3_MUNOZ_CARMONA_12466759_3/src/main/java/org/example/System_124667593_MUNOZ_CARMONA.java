@@ -136,6 +136,7 @@ public class System_124667593_MUNOZ_CARMONA {
 
  //****************************************************************************************************************************************
  // METODO PARA INTERACTUAR CON UN CHATBOT
+    //Opcion entera--------------------------------------------------------------------------------------------------------------------
  public void interaccionChatbot(int opcionElegida) {
      int k=0;
      String siOpcionEsString="";
@@ -160,7 +161,7 @@ public class System_124667593_MUNOZ_CARMONA {
                              //Encuentra el flow requrido
                              if(chatbots.get(j1).getFlows().get(j2).getId()==interacciones.get(i).getListaHistory().get(4)) {
                                  for (int j3=0; j3<chatbots.get(j1).getFlows().get(j2).getOptions().size();j3++){
-                                     //Encuentra la opcion elegida
+                                     //Encuentra la opcion elegida, en este caso, de opcionElegida String, se debe revisar si pertenece a las keywords de las opsciones
                                      if (chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getCode() == opcionElegida){
                                          coordenadas.add(3,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getChatbotCodeLink());
                                          coordenadas.add(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
@@ -187,6 +188,57 @@ public class System_124667593_MUNOZ_CARMONA {
      }
  }
 
+//Opcion String----------------------Uso de las Keyword--------------------------------------------------------------------------------------
+    public void interaccionChatbot(String opcionElegida) {
+        int k=0;
+        String siOpcionEsString=opcionElegida;
+
+        List<Integer>coordenadas=new ArrayList<>();
+        //Ciclo for para determinar si dentro de la lista interacciones hay alguna asociada al currentUser
+        for(Interaccion_124667593_MUNOZ_CARMONA i:interacciones){
+            if (i.getNameUsuario().equals(currentUser)){k++;
+            }
+        }
+        //Si K > 0 implica que el usuario ya ha interactuando con el sistema.
+        if (k>0) {
+            for (int i = interacciones.size() - 1; i >= 0; i--) {
+                if (interacciones.get(i).getNameUsuario().equals(currentUser)) {
+                    coordenadas.add (0,interacciones.get(i).getListaHistory().get(3));
+                    coordenadas.add (1,interacciones.get(i).getListaHistory().get(4));
+                    for (int j1=0; j1<chatbots.size(); j1++){
+                        //Encuentra el chatbot requerido
+                        if (chatbots.get(j1).getChatbotID() == interacciones.get(i).getListaHistory().get(3)){
+                            for (int j2=0; j2<chatbots.get(j1).getFlows().size();j2++){
+                                //Encuentra el flow requrido
+                                if(chatbots.get(j1).getFlows().get(j2).getId()==interacciones.get(i).getListaHistory().get(4)) {
+                                    for (int j3=0; j3<chatbots.get(j1).getFlows().get(j2).getOptions().size();j3++){
+                                        //Encuentra la opcion elegida
+                                        if (chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getKeyword().contains(opcionElegida)) {
+                                            coordenadas.add(2,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getCode());
+                                            coordenadas.add(3,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getChatbotCodeLink());
+                                            coordenadas.add(4,chatbots.get(j1).getFlows().get(j2).getOptions().get(j3).getInitialflowCodeLink());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,siOpcionEsString, coordenadas);
+                    interacciones.add(interaccion);
+                    break;
+                }
+            }
+        }
+        else {
+            coordenadas.add(0, 0);
+            coordenadas.add(1, 1);
+            coordenadas.add(2, 0);
+            coordenadas.add(3, 0);
+            coordenadas.add(4, 1);
+            Interaccion_124667593_MUNOZ_CARMONA interaccion = new Interaccion_124667593_MUNOZ_CARMONA(currentUser,siOpcionEsString, coordenadas);
+            interacciones.add(interaccion);
+        }
+    }
 
 
     //**********************************************************************************************************************************
@@ -219,7 +271,8 @@ public class System_124667593_MUNOZ_CARMONA {
                                      else{
                                          if (interacciones.get(i).getSiString().equals("")){
                                              System.out.print(":" + interacciones.get(i).getSiString());}
-                                         else{System.out.print(":" + interacciones.get(i).getListaHistory().get(3));}
+                                         else{
+                                             System.out.print(":" + interacciones.get(i).getListaHistory().get(3));}
                                      }
                                      System.out.println();
                                      //se imprimen las opciones

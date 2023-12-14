@@ -18,10 +18,8 @@ public class Main {
 
         int code_dialogando =1; //Se ingresa a los dialogos
         //DIALOGO (1)****************************************************************************************************************************************************************
-
         while (code_dialogando==1) {
-            // EL DIALOGO INICIAL
-
+            // EL DIALOGO INICIAL4
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
             System.out.println("Que deseas hacer?");
             System.out.println("a.-Ingresar al sistema - Login  (Marca 1)");
@@ -56,13 +54,9 @@ public class Main {
             if (altEntrada == 3) {
                 int var_Dummie = 1;
                 //Se define ciclo para generar la posibilidad de ingresasr mas de un usuario
-                while (var_Dummie != 2) {
+                while (var_Dummie == 1) {
                     if(var_Dummie==1){
                         sistema.addUsuario(make_user());
-                        System.out.println("Deseas ingresar otro usuario? (Si -Marca 1) (No -Marca 2)  ");
-                        int otroUsuario = ingresarEntero(1,2);
-                        var_Dummie = otroUsuario;}
-                    else{
                         System.out.println("Deseas ingresar otro usuario? (Si -Marca 1) (No -Marca 2)  ");
                         int otroUsuario = ingresarEntero(1,2);
                         var_Dummie = otroUsuario;}
@@ -84,7 +78,7 @@ public class Main {
             System.out.println("SISTEMA CHATBOTS PARADIGMAS");
             System.out.println("a.-Ingresar un Chatbot (Marca 1)");
             System.out.println("b.-Interactuar con el sistema (Marca 2)");
-            System.out.println("c.- Simular interacción con un user_bot (Marca 3)");
+            System.out.println("c.-Simular interacción con un user_bot (Marca 3)");
             System.out.println("d.-Salir (Marca 4)");
             int altEntrada1 = ingresarEntero(1,4);  //altEntrada corresponde a la alternativa elegida en este primer dialogo
 
@@ -101,8 +95,7 @@ public class Main {
                 while (var_Dummie == 1) {
                     sistema.addChatbotToSistema(make_chatbot());
                     System.out.println("Deseas ingresar otro chatbot? (Si -Marca 1) (No -Marca 2)  ");
-                    int otroChatbot = scanner.nextInt();
-                    scanner.nextLine();
+                    int otroChatbot = ingresarEntero(1,2);
                     var_Dummie = otroChatbot;
                 }
             }
@@ -125,8 +118,7 @@ public class Main {
                     sistema.sintesisUser(sistema.getCurrentUser());
 
                     System.out.println("Deseas seguir interactuando con los chabots (si = 1) (No = 0)");
-                    int seguirInteractuando = scanner.nextInt();
-                    scanner.nextLine();
+                    int seguirInteractuando = ingresarEntero(0,1);
 
                     if(seguirInteractuando == 0){
                         interaccion=0;
@@ -137,10 +129,11 @@ public class Main {
             //OPCION 3
             if (altEntrada1==3) {
                 System.out.println("Ingrese el número de iteraciones a simular");
-                int numIteraciones= scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Ingrese el usuario simulado (formato: user_XXXXX) : " );
-                String usuarioSimulado= scanner.nextLine();
+                int numIteraciones= ingresarEntero(0,999);
+                //scanner.nextLine();   //***
+                System.out.println("Ingrese el usuario simulado (formato: user_XXXXX) : " ); //*****
+                String usuarioSimulado1= scanner.nextLine();
+                String usuarioSimulado=usuarioSimulado1;
                 sistema.simuladorChatbots(usuarioSimulado, numIteraciones);
             }
 
@@ -172,7 +165,7 @@ public class Main {
         System.out.println("Ingrese el rol definido para el usuario: ");
         System.out.println("(1) Administrador");
         System.out.println("(2) Usuario Normal");
-        int userRol= scanner.nextInt();
+        int userRol= ingresarEntero(1,2);  //*****
         usuario.setEstado(userRol);
         return usuario;
     }
@@ -187,8 +180,8 @@ public class Main {
         //Se ingresa por consola el chatbot:
         Scanner scanner = new Scanner (System.in);
         System.out.println("Ingrese ID del chatbot");
-        int id_chatbot= scanner.nextInt();
-        scanner.nextLine();
+        int id_chatbot= ingresarEntero(0,999);
+        //scanner.nextLine();*****
         chatbot.setChatbotID(id_chatbot);
 
         System.out.println("Ingrese en nombre del Chatbot");
@@ -200,17 +193,17 @@ public class Main {
         chatbot.setMsgWelcome(msg_chatbot);
 
         System.out.println("Ingrese startFlowID");
-        int startFlowIDCb= scanner.nextInt();
-        scanner.nextLine();
+        int startFlowIDCb= ingresarEntero(0,999);
+        //scanner.nextLine();
         chatbot.setStartFlowID(startFlowIDCb);
 
         //Abajo: while para llenar la flujos
         System.out.println("Deseas crear un flujos?  Si (Marca 1) / No (Marca 2) ");
-        int ingresarFlujo = scanner.nextInt();
+        int ingresarFlujo = ingresarEntero(1,2); //****
         while (ingresarFlujo == 1){
             flujos.add(make_flow());
             System.out.println("Deseas ingresar otro flujo?  Si (Marca 1) / No (Marca 2) ");
-            int otroFlujo = scanner.nextInt();
+            int otroFlujo = ingresarEntero(1,2); //*****
             ingresarFlujo = otroFlujo;
         }
         chatbot.setFlows(flujos);
@@ -227,8 +220,8 @@ public class Main {
         //Se ingresa por consola flujo:
         Scanner scanner = new Scanner (System.in);
         System.out.println("Ingrese Id del Flow");
-        int id_flow= scanner.nextInt();
-        scanner.nextLine();
+        int id_flow= ingresarEntero(0,999);
+        //scanner.nextLine();  //*****
         flujo.setId(id_flow);
 
         System.out.println("Ingrese mensaje");
@@ -237,11 +230,11 @@ public class Main {
 
         //Abajo: while para llenar la opciones:
         System.out.println("Deseas ingresar una opcion?  Si (Marca 1) / No (Marca 2) ");
-        int ingresarOpcion = scanner.nextInt();
+        int ingresarOpcion = ingresarEntero(1,2); //****
         while (ingresarOpcion == 1){
             opciones.add(make_option());
             System.out.println("Deseas ingresar otra opcion?  Si (Marca 1) / No (Marca 2) ");
-            int otraOpcion = scanner.nextInt();
+            int otraOpcion = ingresarEntero(1,2); //****
             ingresarOpcion = otraOpcion;
         }
         flujo.setOptions(opciones);
@@ -258,8 +251,8 @@ public class Main {
         //Se ingresa por consola la opcion:
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese Code de la opcion");
-        int code = scanner.nextInt();
-        scanner.nextLine();
+        int code = ingresarEntero(0,999); //******
+        //scanner.nextLine(); ****
         opcion.setCode(code);
 
         System.out.println("Ingrese mensaje");
@@ -267,26 +260,26 @@ public class Main {
         opcion.setMessage(msg_opcion);
 
         System.out.println("Ingrese el CodeLink del Chatbot asociado");
-        int codeLinkCb = scanner.nextInt();
-        scanner.nextLine();
+        int codeLinkCb = ingresarEntero(0,999); //****
+        //scanner.nextLine(); ******
         opcion.setChatbotCodeLink(codeLinkCb);
 
         System.out.println("Ingrese el CodeLink del Flow asociado");
-        int codeLinkFl = scanner.nextInt();
-        scanner.nextLine();
+        int codeLinkFl = ingresarEntero(0,999);
+        //scanner.nextLine(); ***
         opcion.setInitialflowCodeLink(codeLinkFl);
 
         //Abajo: while para llenar la keywords
         System.out.println("Deseas ingresar una keywords?  Si (Marca 1) / No (Marca 2) ");
-        int ingresarKW = scanner.nextInt();
-        scanner.nextLine();
+        int ingresarKW = ingresarEntero(1,2);  //******
+        //scanner.nextLine(); ****
         while (ingresarKW == 1){
             System.out.println("Ingrese keyword");
             String kw = scanner.nextLine();
             keywords.add(kw);
             System.out.println("Deseas ingresar otra keywords?  Si (Marca 1) / No (Marca 2) ");
-            int otraKW = scanner.nextInt();
-            scanner.nextLine();
+            int otraKW = ingresarEntero(1,2); //****
+            //scanner.nextLine();  ***
             ingresarKW=otraKW;
         }
         opcion.setKeyword(keywords);
@@ -310,20 +303,26 @@ public class Main {
 
 
     //INGRESAR ENTERO PROTEGIENDO EL TIPO DE DATO--------------------------------------------------------------------------------------------------------
+    //Caso entero
     public static int ingresarEntero(int min, int max){
         Scanner scanner = new Scanner(System.in);
         int entrada=0;
         boolean entradaValida = false;
-            do {
-                //System.out.print("Ingrese un número entero: ");
-                if (scanner.hasNextInt()) {
-                    entrada = scanner.nextInt();
-                    entradaValida = true;
-                } else {
-                    System.out.println("Entrada no válida o fuera de rango");
-                    scanner.next(); // Limpiar el buffer de entrada
+        do {
+            //System.out.print("Ingrese un número entero entre " + min + " y " + max + ": ");
+            if (scanner.hasNextInt()) {
+                entrada = scanner.nextInt();
+                entradaValida = (entrada >= min && entrada <= max);
+                if (!entradaValida) {
+                    System.out.println("Número fuera de rango. Inténtelo nuevamente.");
                 }
-            }while (!entradaValida && (entrada >= min && entrada <= max));
+            }
+            else {
+                System.out.println("Entrada no válida. Inténtelo nuevamente.");
+                scanner.next(); // Limpiar el buffer de entrada
+                entradaValida = false;
+            }
+        } while (!entradaValida);
             return entrada;
     }
 
