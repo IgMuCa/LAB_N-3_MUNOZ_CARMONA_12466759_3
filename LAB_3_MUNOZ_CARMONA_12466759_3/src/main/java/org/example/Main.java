@@ -31,7 +31,7 @@ public class Main {
             //OPCION 1
             //Ingresar al sistema
             if (altEntrada == 1) {
-                System.out.println("Nombre: ");
+                System.out.println("Nombre del usuario a ingresar: ");
                 String user = scanner.nextLine();
                 if(sistema.getCurrentUser()!=null && sistema.getCurrentUser()!=user){
                     System.out.println("Hay un usuario operando en el sistema");
@@ -119,6 +119,7 @@ public class Main {
 
                         System.out.println("Continuar? (si = 1) (No = 2)");
                         int seguirInteractuando = scanner.nextInt();
+                        scanner.nextLine();
                         interaccion = seguirInteractuando;
                     } else {
                         System.out.println("Ingrese Keyword");
@@ -128,6 +129,7 @@ public class Main {
 
                         System.out.println("Continuar? (si = 1) (No = 2)");
                         int seguirInteractuando = scanner.nextInt();
+                        scanner.nextLine();
                         interaccion = seguirInteractuando;
                     }
                 }
@@ -147,7 +149,9 @@ public class Main {
 
             //OPCION 4
             //Salir del dialogo
-            if (altEntrada1 == 4) {code_dialogando =0;
+            if (altEntrada1 == 4) {
+                sistema.logout();
+                code_dialogando =0;
             }
 
         } //Cierre de While asociado al ingreso al sistema
