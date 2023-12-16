@@ -28,7 +28,6 @@ public class Main {
             System.out.println("d.-Salir  (Marca 4)");
             int altEntrada = ingresarEntero(1,4);   //Se asegura el ingreso de un entrero entre 1 y 4.
 
-
             //OPCION 1
             //Ingresar al sistema
             if (altEntrada == 1) {
@@ -101,36 +100,45 @@ public class Main {
             }
 
             //OPCION 2
-            //Interactua con el sistema
+            //Interactuar con el sistema
             if (altEntrada1 == 2) {
-                int interaccion=1;
-
-                //Situacion inicial
+                int interaccion = 1;
                 sistema.interaccionChatbot(0);
                 sistema.sintesisUser(sistema.getCurrentUser());
 
-                //ciclo for para interactuar
                 while (interaccion==1) {
-                    System.out.println("Ingrese opción elegida");
-                    int opcion = scanner.nextInt();
-                    scanner.nextLine();
-                    sistema.interaccionChatbot(opcion);
-                    sistema.sintesisUser(sistema.getCurrentUser());
+                    System.out.println("Elegiras a traves de: Id (Marca 1) o Keywords (Marca 2)");
+                    int eleccion = ingresarEntero(1,2);
 
-                    System.out.println("Deseas seguir interactuando con los chabots (si = 1) (No = 0)");
-                    int seguirInteractuando = ingresarEntero(0,1);
+                    if (eleccion == 1) {
+                        System.out.println("Ingrese Id");
+                        int opcion1 = scanner.nextInt();
+                        scanner.nextLine();
+                        sistema.interaccionChatbot(opcion1);
+                        sistema.sintesisUser(sistema.getCurrentUser());
 
-                    if(seguirInteractuando == 0){
-                        interaccion=0;
+                        System.out.println("Continuar? (si = 1) (No = 2)");
+                        int seguirInteractuando = scanner.nextInt();
+                        interaccion = seguirInteractuando;
+                    } else {
+                        System.out.println("Ingrese Keyword");
+                        String opcion2 = scanner.nextLine();
+                        sistema.interaccionChatbotAux(opcion2);
+                        sistema.sintesisUser(sistema.getCurrentUser());
+
+                        System.out.println("Continuar? (si = 1) (No = 2)");
+                        int seguirInteractuando = scanner.nextInt();
+                        interaccion = seguirInteractuando;
                     }
                 }
             }
 
+
             //OPCION 3
             if (altEntrada1==3) {
                 System.out.println("Ingrese el número de iteraciones a simular");
-                int numIteraciones= ingresarEntero(0,999);
-                //scanner.nextLine();   //***
+
+                int numIteraciones = ingresarEntero(0,999);
                 System.out.println("Ingrese el usuario simulado (formato: user_XXXXX) : " ); //*****
                 String usuarioSimulado1= scanner.nextLine();
                 String usuarioSimulado=usuarioSimulado1;
@@ -141,7 +149,6 @@ public class Main {
             //Salir del dialogo
             if (altEntrada1 == 4) {code_dialogando =0;
             }
-
 
         } //Cierre de While asociado al ingreso al sistema
 
@@ -155,6 +162,10 @@ public class Main {
     //SE DECLARAN METODOS A USAR EN EL MAIN----------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------------------------------------
     //Metodo que crea un USUARIO
+    /**
+     *  Metodo que crea un usuario
+     * @return
+     */
     public static Usuario_124667593_MUNOZ_CARMONA make_user( ) {
         var usuario = new Usuario_124667593_MUNOZ_CARMONA();
 
@@ -173,6 +184,11 @@ public class Main {
 
     //-------------------------------------------------------------------------------------------------------------
     //Metodo que crea un CHATBOT
+
+    /**
+     * Metodo que crea un chatbot
+     * @return
+     */
     public static Chatbot_124667593_MUNOZ_CARMONA make_chatbot() {
         var chatbot = new Chatbot_124667593_MUNOZ_CARMONA();
         List<Flow_124667593_MUNOZ_CARMONA> flujos = new ArrayList<>();
@@ -213,6 +229,11 @@ public class Main {
 
     //------------------------------------------------------------------------------------------------------------
     //Metodo que crea un FLUJO
+
+    /**
+     * Metodo que crea un flujo
+     * @return
+     */
     public static Flow_124667593_MUNOZ_CARMONA make_flow() {
         var flujo= new Flow_124667593_MUNOZ_CARMONA ();
         List<Option_124667593_MUNOZ_CARMONA> opciones = new ArrayList<>();
@@ -244,6 +265,11 @@ public class Main {
 
 //----------------------------------------------------------------------------------------------------------------
     //Metodo que crea una OPCION
+
+    /**
+     * Metodo que crea una opcion
+     * @return
+     */
     public static Option_124667593_MUNOZ_CARMONA make_option() {
         var opcion =new Option_124667593_MUNOZ_CARMONA();
         List<String> keywords = new ArrayList<>();
@@ -288,6 +314,13 @@ public class Main {
 
     //-------------------------------------------------------------------------------------------------------------------
     //Metodo para determinar si una tupla pertenece a lista de usuarios
+
+    /**
+     * Metodo para determinar si una tupla pertenece a lista de usuarios
+     * @param usuarios
+     * @param usuario
+     * @return
+     */
     public static int rolAdmistrador (List<Usuario_124667593_MUNOZ_CARMONA>usuarios, String usuario){
         int esAdministrador=0;
         for (Usuario_124667593_MUNOZ_CARMONA user:usuarios) {
@@ -302,8 +335,12 @@ public class Main {
 
 
 
-    //INGRESAR ENTERO PROTEGIENDO EL TIPO DE DATO--------------------------------------------------------------------------------------------------------
-    //Caso entero
+    /**
+     * Metodo para ingresar un entero protegiendo el tipo de dato
+     * @param min
+     * @param max
+     * @return
+     */
     public static int ingresarEntero(int min, int max){
         Scanner scanner = new Scanner(System.in);
         int entrada=0;

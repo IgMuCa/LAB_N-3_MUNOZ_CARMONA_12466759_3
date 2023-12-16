@@ -10,7 +10,14 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
     private int startFlowID;
     private List<Flow_124667593_MUNOZ_CARMONA> flows;
 
-    //CONSTRUCTOR
+    /**
+     * Constructor
+     * @param chatbotID
+     * @param name
+     * @param msgWelcome
+     * @param startFlowID
+     * @param flows
+     */
     public Chatbot_124667593_MUNOZ_CARMONA(int chatbotID, String name, String msgWelcome, int startFlowID, List<Flow_124667593_MUNOZ_CARMONA> flows) {
         this.chatbotID = chatbotID;
         this.name = name;
@@ -19,38 +26,87 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
         this.flows = new ArrayList<>();
     }
 
+    /**
+     * Polimorfismo del metodo constructor
+     */
     public Chatbot_124667593_MUNOZ_CARMONA() {
     }
 
-    // GETTER AND SETTER
-    public int getChatbotID() {
-        return chatbotID;
-    }
+
+    //*************************************************GETTER AND SETTER***************************************************************************************************************
+
+    /**
+     * Metodo que retorna el chatbotID
+     * @return
+     */
+    public int getChatbotID() {return chatbotID;}
+
+    /**
+     * Metodo que puede modificar el chatbotID
+     * @param chatbotID
+     */
     public void setChatbotID(int chatbotID) {
-        this.chatbotID = chatbotID;
-    }
+        this.chatbotID = chatbotID;}
+
+    /**
+     * Metodo que retorna el name
+     * @return
+     */
     public String getName() {
-        return name;
-    }
+        return name;}
+
+    /**
+     * Metodo que puede modificar el name
+     * @param name
+     */
     public void setName(String name) {
-        this.name = name;
-    }
+        this.name = name;}
+
+    /**
+     * Metodo que retorna el msgWelcome
+     * @return
+     */
     public String getMsgWelcome() {
-        return msgWelcome;
-    }
+        return msgWelcome;}
+
+    /**
+     * Metodo que puede modificar el msgWelcome
+     * @param msgWelcome
+     */
     public void setMsgWelcome(String msgWelcome) {
-        this.msgWelcome = msgWelcome;
-    }
+        this.msgWelcome = msgWelcome;}
+
+    /**
+     * Metodo que retorna el starFlowID
+     * @return
+     */
     public int getStartFlowID() {
-        return startFlowID;
-    }
+        return startFlowID;}
+
+    /**
+     * Metodo que retorna los flujos del chatbot
+     * @return
+     */
     public List<Flow_124667593_MUNOZ_CARMONA> getFlows() {return flows;}
+
+    /**
+     *  Metodo que puede modificar el starFlowID
+     * @param startFlowID
+     */
     public void setStartFlowID(int startFlowID) {
-        this.startFlowID = startFlowID;
-    }
+        this.startFlowID = startFlowID;}
+
+    /**
+     * Metodo peuede modificar la lista de Flujos
+     * @param flows
+     */
     public void setFlows(List<Flow_124667593_MUNOZ_CARMONA> flows) {this.flows = flows;}
 
-    // AGREGAR FLUJO SIN REPETIR
+
+    /**
+     * Metodo que puede agregar un flujo al chatbot, sin repetir
+     * @param flujo
+     */
     public void addFlujoToflows(Flow_124667593_MUNOZ_CARMONA flujo) {
         int largo_flows = flows.size();
         int contador=0;
@@ -71,8 +127,13 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
 
 
 
-    //-------------------------------------------------------------------------------------------------------------
-    //PARA IMPRIMIR LAS INSTANCIAS DE CHATBOTS
+
+    //*******************************************IMPRIMIR LAS INSTANCIAS DE CHATBOTS********************************************************************************************
+
+    /**
+     * Metodo que imprime una instancia de la clase chatbot
+     * @return
+     */
     @Override
     public String toString() {
         return "Chatbot_124667593_MUNOZ_CARMONA{" +
@@ -85,5 +146,5 @@ public class Chatbot_124667593_MUNOZ_CARMONA {
     }
 
 
-    //-------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------
 }
